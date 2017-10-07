@@ -1,0 +1,14 @@
+4 lines (13 sloc)  215 Bytes
+{
+  "name": "toxicaltsbot",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+"dependencies": {
+"discord.js": "^11.2.1",
+"request": "2.81.0"
+}
+}
