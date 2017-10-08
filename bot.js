@@ -35,6 +35,10 @@ bot.on("guildCreate", guild => {
     console.log(`New guild added : ${guild.name}, owned by ${guild.owner.user.username}`);
 });
 
+bot.on('guildMemberAdd',  (member) => {
+    member.guild.channels.get("363514912531677197").send("Welcome to cursed! Hope you have fun! " + member);
+    });
+
 bot.on("presenceUpdate", (oldMember, newMember) => {
     let guild = newMember.guild;
     let playRole = guild.roles.find("name", "Playing Overwatch");
@@ -47,9 +51,6 @@ bot.on("presenceUpdate", (oldMember, newMember) => {
 
 }
 });
-bot.on('guildMemberAdd',  (member) => {
-    member.guild.channels.get("352990046942396420").send("Welcome to the greatest discord server of all time!, " + member);
-    });
 
 
   bot.on("message", message => {
@@ -81,7 +82,7 @@ if (command === "embed") {
          color: 000000,
          author: {
              name: message.author.tag,
-             icon_url: message.author.avatarURL
+             icon_url: message.author.avatar
          },
          title: 'Say',
          description: `${msg}`,
@@ -89,7 +90,7 @@ if (command === "embed") {
          timestamp: new Date(),
          footer: {
              text: bot.user.username,
-             icon_url: bot.user.avatar.URL,
+             icon_url: bot.user.avatar,
          }}})};
 
 
@@ -106,7 +107,7 @@ if (command === "embed") {
                     color:00000,
                     author: {
                         name: message.author.tag,
-                        icon_url: message.author.avatarURL
+                        icon_url: message.author.avatar
                     },
                     title: 'Support',
                     description: `${msg}`,
@@ -114,7 +115,7 @@ if (command === "embed") {
                     timestamp: new Date(),
                     footer: {
                         text: bot.user.username,
-                        icon_url: bot.user.avatar.URL,
+                        icon_url: bot.user.avatar.
                     }}})};
 
 
@@ -125,15 +126,13 @@ if (command === "embed") {
              var author = message.author
              message.channel.send(`Hello ${author.username}, how are you doing? (*good*, *bad*)`)
              message.channel.awaitMessages(filter, { max: 1, time: 30000, errors: ['time'] })
-             .then(collected => message.channel.send('Aww.. :( \n hope you feel better')) 
-             
+             .then(collected => message.channel.sendMessage('Aww.. :('))
+             message.channel.sendMessage('Hope you feel beter!')
+             } 
+             const good = m => m.content.startsWith('good'); {
+                 message.channel.awaitMessages(good, {max: 1, time: 30000, errors: ['time'] })
+                 .then(collected => message.channel.sendMessage('Nice!'))
             }}
-            if (command === "conversation") {
-                const good = m => m.content.startsWith('good'); {
-                    message.channel.awaitMessages(good, {max: 1, time: 30000, errors: ['time'] })
-                    .then(collected => message.channel.send('Nice!'))
-            }}
-
 
              
          
@@ -151,7 +150,7 @@ if (command === "embed") {
                  color: color,
                  author: {
                      name: message.author.tag,
-                     icon_url: message.author.avatarURL
+                     icon_url: message.author.avatar
                  },
                  title: 'Say',
                  description: `${msg}`,
@@ -159,7 +158,7 @@ if (command === "embed") {
                  timestamp: new Date(),
                  footer: {
                      text: bot.user.username,
-                     icon_url: bot.user.avatar.URL,
+                     icon_url: bot.user.avatar,
                  }}})};
 
 
@@ -262,7 +261,7 @@ if (command === "mute") {
              color: 000000,
              author: {
                  name: message.author.tag,
-                 icon_url: message.author.avatarURL
+                 icon_url: message.author.avatar
              },
              
              title: 'Muted, bitch',
@@ -272,7 +271,7 @@ if (command === "mute") {
              timestamp: new Date(),
              footer: {
                  text: bot.user.username,
-                 icon_url: bot.user.avatar.URL,
+                 icon_url: bot.user.avatar,
                  
             
       }}})};
@@ -307,7 +306,7 @@ if (command === "unmute") {
              color: 000000,
              author: {
                  name: message.author.tag,
-                 icon_url: message.author.avatarURL
+                 icon_url: message.author.avatar
              },
              
              title: 'Unmuted',
@@ -317,7 +316,7 @@ if (command === "unmute") {
              timestamp: new Date(),
              footer: {
                  text: bot.user.username,
-                 icon_url: bot.user.avatar.URL,
+                 icon_url: bot.user.avatar,
                  
             
       }}})};
@@ -346,7 +345,7 @@ if (command === "L") {
          color: 000000,
          author: {
              name: message.author.tag,
-             icon_url: message.author.avatarURL
+             icon_url: message.author.avatar
          },
          
          title: 'Hand L',
@@ -356,7 +355,7 @@ if (command === "L") {
          timestamp: new Date(),
          footer: {
              text: bot.user.username,
-             icon_url: bot.user.avatar.URL,
+             icon_url: bot.user.avatar,
              
         
   }}}
@@ -365,8 +364,7 @@ if (command === "L") {
          
 
 
-if (command === "lol") { 
-    if (message.author.has)
+if (command === "lol") {
     message.channel.sendMessage('kthen')
 }
 if (command === "cmds") {
@@ -410,6 +408,10 @@ if (command === "cmds") {
   if (message.content.startsWith(prefix + "ban")) {
       let author = message.author
     let member = message.mentions.members.first();
+    if (!member) {
+        message.channel.send('Ban who?')
+        return;
+    }
     let reason = args.slice(1).join(" ");
     if (message.member.hasPermission("BAN_MEMBERS")) {
         message.channel.sendMessage("klol bye peasant")
@@ -422,9 +424,10 @@ if (message.content.startsWith(prefix + "setgame")) {
     if (message.author.id == "251938340671062036") {
         let argsresult = args.join(' ')
         bot.user.setGame(argsresult)
-        message.channel.send('game has been set')
+        message.channel.send('The game has been set!')
     }
 }
+
 
   if (message.content.startsWith(prefix + "unban")) {
       let author = message.author
@@ -465,11 +468,7 @@ console.log(`8ball by ${author} or ${author.username} ` + message)
       message.channel.sendMessage("```go away```")
   }  else
   if (message.content.startsWith(prefix + "kill")) {
-      if (!args) {
-          message.channel.send('Kill who?')
-          return;
-      }
-      if (args[1]) message.channel.send(kill[Math.floor(Math.random() + kill.length)]);
+      if (args[1]) message.channel.sendMessage(kill[Math.floor(Math.random() + kill.length)]);
   } else
   if (message.content.startsWith(prefix + "#cursedisgay")) {
       message.channel.sendMessage("you're correct.") 
@@ -479,7 +478,5 @@ console.log(`8ball by ${author} or ${author.username} ` + message)
 
 
 
-
-   
 
 bot.login(process.env.BOT_TOKEN); 
