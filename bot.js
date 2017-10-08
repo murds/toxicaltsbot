@@ -1,4 +1,3 @@
-
 const Discord = require("discord.js");
 const prefix = "*"
 
@@ -482,4 +481,5 @@ console.log(`8ball by ${author} or ${author.username} ` + message)
 
 
    
+
 bot.login(process.env.BOT_TOKEN); 
